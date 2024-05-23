@@ -1,4 +1,4 @@
-INSERT INTO Student (name, rollNo, address, department) VALUES
+INSERT INTO STUDENT (name, Roll_No, address, department) VALUES
 ('Alice Johnson', 101, '123 Maple Street, Springfield', 'ComputerScience'),
 ('Bob Smith', 102, '456 Oak Avenue, Springfield', 'MechanicalEngineering'),
 ('Charlie Brown', 103, '789 Pine Road, Springfield', 'ElectricalEngineering'),
