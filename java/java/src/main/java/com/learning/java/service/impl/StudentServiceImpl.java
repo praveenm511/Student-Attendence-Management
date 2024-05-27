@@ -1,5 +1,6 @@
 package com.learning.java.service.impl;
 
+import com.learning.java.Exception.EntityNotFound;
 import com.learning.java.model.Student;
 import com.learning.java.repository.StudentRepository;
 import com.learning.java.service.StudentService;
@@ -22,5 +23,26 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Optional<Student> findById(int id) {
         return studentRepository.findById((long)id);
+    }
+
+    @Override
+    public Student saveStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+    @Override
+    public Student updateStudent(Long id,Student student) {
+        try{
+            Student existingStudent = studentRepository.findById(id).orElseThrow(()->new EntityNotFound("Student not found"));
+            existingStudent.setName(student.getName());
+            existingStudent.setAddress(student.getAddress());
+            existingStudent.setDepartment(student.getDepartment());
+            studentRepository.save(existingStudent);
+            return existingStudent;
+        }catch (EntityNotFound entityNotFound){
+            throw entityNotFound;
+        }catch (Exception exception){
+            throw exception;
+        }
     }
 }
